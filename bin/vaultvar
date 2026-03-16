@@ -1,0 +1,5 @@
+#!/bin/sh
+
+name="${1:?name}"
+shift
+ansible-vault encrypt_string -n "$name" --stdin-name "$name" "$@"
