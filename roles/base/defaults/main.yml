@@ -1,0 +1,4 @@
+# base defaults
+
+# base packages to install
+base_packages: []
