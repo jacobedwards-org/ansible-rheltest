@@ -1,0 +1,22 @@
+# .bashrc
+
+# source global bashrc
+test -f /etc/bashrc &&
+    . /etc/bashrc
+
+{% if user.shell_rc.functions is defined %}
+# options
+{% for option, enabled in user.shell_rc.options.items() -%}
+set {{ "-" if enabled else "+" }}o {{ option }}
+{% endfor %}
+{% endif %}
+
+{% if user.shell_rc.functions is defined %}
+# functions
+{% for name, body in user.shell_rc.functions.items() %}
+
+function {{ name }} {
+	{{ body }}
+}
+{% endfor %}
+{% endif %}

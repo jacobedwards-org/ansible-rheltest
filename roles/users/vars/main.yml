@@ -1,0 +1,5 @@
+# Define shell rc and profile locations
+shells:
+  bash:
+    rc: ".bashrc"
+    profile: ".bash_profile"

@@ -13,3 +13,16 @@
     key: "{{ user.key }}"
     state: present
   when: user.key is defined
+
+- name: Configure user shell
+  vars:
+    shell_name: "{{ user.shell | dirname | default('bash') }}"
+    home: "{{ user.home | default('/home/' ~ user.name) }}"
+  ansible.builtin.template:
+    src: "{{ shell_name }}-{{ file }}.j2"
+    dest: "{{ home }}/{{ shells[shell_name][file] }}"
+  loop:
+    - rc
+    - profile
+  loop_control:
+    loop_var: file

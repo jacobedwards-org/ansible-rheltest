@@ -1,0 +1,12 @@
+# .bash_profile
+
+# source .bashrc
+test -f ~/.bashrc &&
+    . ~/.bashrc
+
+{% if user.shell_rc.env is defined %}
+# environment
+{% for name, value in user.shell_rc.env.items() %}
+export {{ name }}="{{ value }}"
+{% endfor %}
+{% endif %}
