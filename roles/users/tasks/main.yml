@@ -1,16 +1,5 @@
-- name: Create and update users
-  ansible.builtin.user:
-    name: "{{ item.name }}"
-    groups: "{{ item.groups | default(omit) }}"
-    shell: "{{ item.shell | default(omit) }}"
-    password: "{{ item.password | password_hash('sha512') | default(omit) }}"
-    state: present
+- name: Loop over users
+  ansible.builtin.include_tasks: user.yml
   loop: "{{ users }}"
-
-- name: Install SSH keys
-  ansible.posix.authorized_key:
-    user: "{{ item.name }}"
-    key: "{{ item.key }}"
-    state: present
-  loop: "{{ users }}"
-  when: item.key is defined
+  loop_control:
+    loop_var: user

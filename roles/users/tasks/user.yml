@@ -1,0 +1,14 @@
+- name: Create and update users
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    groups: "{{ user.groups | default(omit) }}"
+    shell: "{{ user.shell | default(omit) }}"
+    password: "{{ user.password | password_hash('sha512') | default(omit) }}"
+    state: present
+
+- name: Install SSH keys
+  ansible.posix.authorized_key:
+    user: "{{ user.name }}"
+    key: "{{ user.key }}"
+    state: present
+  when: user.key is defined
