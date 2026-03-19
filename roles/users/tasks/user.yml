@@ -3,6 +3,7 @@
     name: "{{ user.name }}"
     groups: "{{ user.groups | default(omit) }}"
     shell: "{{ user.shell | default(omit) }}"
+    home: "{{ user.home | default(omit) }}"
     password: "{{ user.password | password_hash('sha512') | default(omit) }}"
     state: present
 

@@ -14,6 +14,7 @@ Use the `users` array to define users and their parameters:
 	    [groups: <groups>]
 	    [shell: <shell>]
 	    [key: <ssh public key>]
+	    [home: <home>]
 	    [password: <password>]
 
 NOTE: If setting the password, it is highly recommended that you
