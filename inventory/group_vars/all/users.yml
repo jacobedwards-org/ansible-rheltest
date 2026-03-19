@@ -2,6 +2,15 @@ users:
   - name: jacob
     groups: wheel
     key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM0OKRNI6B50OeRUU/77osA0d9JtS3GfWt0/R33MI0qu jacob@primus.lan"
+    shell_rc:
+      env:
+         PATH: "$HOME/bin:$PATH"
+         PS1: "\\h\\$ "
+      functions:
+         ls: 'command ls -1 "$@"'
+         lc: 'command ls -C "$@"'
+      options:
+        vi: true
     password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           38323234653435616239343430383033623935393930313230613565643164316361313562373131
@@ -9,4 +18,3 @@ users:
           64613739666335353337353638356639366666316264623166373430336330373964623637626230
           6262313738316139380a326338663361303232656635393062363366643834636563393366323036
           3065
-
